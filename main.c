@@ -5,15 +5,15 @@
 
 void factorize(char *s)
 {
-	unsigned long int n;
-	unsigned long int i = 2;
+	unsigned long  long int n;
+	unsigned long  long int i = 2;
 	n = atoi(s);
 	while (i < n)
 	{
 		
 		if(n % i == 0)
 		{
-			printf("%lu=%lu*%lu\n",n,n/i,i);
+			printf("%llu=%llu*%llu\n",n,n/i,i);
 			return;
 		}
 		i++;
