@@ -11,9 +11,7 @@ def get_factors(n):
 def main():
     # Your Python script code here
     # sys.argv[1] = "env"
-    # arg = sys.argv[1]
-    arg = "tests/test00"
-    print("The argument passed is:", arg)
+    arg = sys.argv[1]
     filename = arg  # Replace with your file name
 
     with open(filename, "r") as file:
