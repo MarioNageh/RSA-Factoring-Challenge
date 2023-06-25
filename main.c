@@ -3,23 +3,32 @@
 #include <unistd.h>
 #define _GNU_SOURCE
 
-void factorize(char *s)
-{
-	unsigned long  long int n;
-	unsigned long  long int i = 2;
-	n = atoi(s);
-	while (i < n)
-	{
-		
-		if(n % i == 0)
-		{
-			printf("%llu=%llu*%llu\n",n,n/i,i);
-			return;
-		}
-		i++;
-	}
 
+#include <gmp.h>
+
+void factorize(char *s) {
+    mpz_t n, i;
+    mpz_init(n);
+    mpz_init_set_ui(i,2);
+
+    mpz_set_str(n, s, 10);
+
+    while (mpz_cmp(i, n) < 0) {
+        if (mpz_divisible_p(n, i)) {
+            mpz_t div;
+            mpz_init(div);
+            mpz_div(div, n, i);
+            gmp_printf("%Zd=%Zd*%Zd\n", n, div, i);
+            mpz_clear(div);
+            break;
+        }
+        mpz_add_ui(i, i, 1);
+    }
+
+    mpz_clear(n);
+    mpz_clear(i);
 }
+
 
 int main(int argc, char **argv) {
 	FILE *file;
