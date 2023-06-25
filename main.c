@@ -6,10 +6,10 @@ void factorize(char *s)
 {
 	unsigned long int n;
 	unsigned long int i = 2;
-
 	n = atoi(s);
 	while (i < n)
 	{
+		
 		if(n % i == 0)
 		{
 			printf("%lu=%lu*%lu\n",n,n/i,i);
@@ -22,9 +22,11 @@ void factorize(char *s)
 
 int main(int argc, char **argv) {
 	FILE *file;
-	ssize_t read;
-	size_t len = 0;
-	char *line;
+	size_t read;
+	
+	size_t count;
+    size_t line;
+	char *text;
 
 	if (argc != 2)
 	{
@@ -38,9 +40,9 @@ int main(int argc, char **argv) {
 		exit(EXIT_FAILURE);
 	}
 
-	while ((read = getline(&(line), &len, file)) != -1)
+	while((line = getline(&text, &count, file)) != -1)
 	{
-		factorize(line);
+		factorize(text);
 	}
 
 	return 0;
